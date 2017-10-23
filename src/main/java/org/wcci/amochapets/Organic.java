@@ -2,18 +2,23 @@ package org.wcci.amochapets;
 
 public interface Organic {
 
-	void feed(); // returns hunger
+	void feed(); // affects hunger
 
-	void water(); // returns health
+	void water(); // affects health
 
 	int getHunger();
 	
 	int getHealth();
 	
-	boolean clean(); // returns the cageDirty or Waste
+//	interface methods - include the 3-part method signature:
+//	1.) return (void, in this case)
+//	2.) name of method
+//	3.) arguments
 	
-	// Since the Litterbox is either a variable in the shelter, or an object of its
-	// own
-	// running the clean part of the interface on individual cats is currently
-	// problematic
+//	ensure that there are getters for the affected variables
+
+//	removed clean from the organic interface, 
+//	because it is not implemented by the organic cat,
+//	but by the shelter class
+	
 }

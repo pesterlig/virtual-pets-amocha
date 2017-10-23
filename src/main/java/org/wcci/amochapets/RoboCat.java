@@ -13,39 +13,37 @@ public class RoboCat extends VirtualPet implements Robotic {
 
 	public RoboCat(String name, String type) {
 		super(name, type);
-		this.health = 50;
-		this.happiness = 50;
-		this.overallHealth = 50.00;
 		this.oilLevel = 50;
 	}
 
+	// methods: oil, tick, getters & setters
+
 	@Override
 	public void oil() {
-		// TODO Auto-generated method stub
+		setHealth(getHealth() + (10 * (generator.nextInt(4) + 1)));
+		setOilLevel(getOilLevel() + (10 * (generator.nextInt(4) + 1)));
 
 	}
 
 	@Override
-	public void tick() {
-		// TODO Auto-generated method stub
-
+	public boolean tick() {
+		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
+		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
+		return false;
 	}
 
-	@Override
-	public void computeHealth() {
-		// TODO Auto-generated method stub
-
+	private int getOilLevel() {
+		return oilLevel;
 	}
 
-	@Override
-	public void computeHappiness() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void computeOverallHealth() {
-		// TODO Auto-generated method stub
+	private void setOilLevel(int oilLevel) {
+		if (oilLevel > 100) {
+			this.oilLevel = 100;
+		} else if (oilLevel < 0) {
+			this.oilLevel = 0;
+		} else {
+			this.oilLevel = oilLevel;
+		}
 
 	}
 

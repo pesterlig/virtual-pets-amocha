@@ -2,6 +2,8 @@ package org.wcci.amochapets;
 
 public interface Robotic {
 
-	public void oil();
+	void oil(); // affects health
+
+	int getHealth();
 
 }

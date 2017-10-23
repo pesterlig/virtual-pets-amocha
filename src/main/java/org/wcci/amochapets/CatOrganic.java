@@ -2,8 +2,10 @@ package org.wcci.amochapets;
 
 public class CatOrganic extends VirtualPet implements Organic {
 
+	// instance variables
+
 	private int hunger;
-	private boolean waste;
+	private boolean isWaste;
 
 	// constructor
 
@@ -11,63 +13,78 @@ public class CatOrganic extends VirtualPet implements Organic {
 			boolean waste) {
 		super(name, type, health, happiness, overallHealth);
 		this.hunger = hunger;
-		this.waste = waste;
+		this.isWaste = isWaste;
 	}
 
 	// overloaded constructor - name & type only
 
 	public CatOrganic(String name, String type) {
 		super(name, type);
-		this.health = 50;
-		this.happiness = 50;
-		this.overallHealth = 50.00;
 		this.hunger = 50;
-		this.waste = false;
+		this.isWaste = false;
+	}
+
+	// methods: feed, poop, water, pee, tick, getters & setters
+
+	@Override
+	public void feed() {
+		setHunger(getHunger() - (10 * (generator.nextInt(4) + 1)));
+		if ((getHunger() < 50) && (generator.nextFloat() < 0.50f)) {
+			poop();
+		}
+	}
+
+	private void poop() {
+		isWaste = true;
+		setHunger(getHunger() + 3);
 	}
 
 	@Override
-	public void tick() {
-		// TODO Auto-generated method stub
+	public void water() {
+		setHealth(getHealth() + (10 * (generator.nextInt(4) + 1)));
+		if ((getHealth() > 50) && (generator.nextFloat() < 0.50f)) {
+			pee();
+		}
 
 	}
 
-	@Override
-	public void computeHealth() {
-		// TODO Auto-generated method stub
-
+	private void pee() {
+		isWaste = true;
+		setHealth(getHealth() - 3);
 	}
 
 	@Override
-	public void computeHappiness() {
-		// TODO Auto-generated method stub
-
+	public boolean tick() {
+		setHunger(getHunger() + (2 * (generator.nextInt(4) + 1)));
+		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
+		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
+		return isWaste;
 	}
 
-	@Override
-	public void computeOverallHealth() {
-		// TODO Auto-generated method stub
+	// getters & setters
 
-	}
-
-	@Override
-	public int feed() {
+	public int getHunger() {
 		return hunger;
-		// TODO Auto-generated method stub
+	}
+
+	private void setHunger(int hunger) {
+		if (hunger > 100) {
+			this.hunger = 100;
+		} else if (hunger < 0) {
+			this.hunger = 0;
+		} else {
+			this.hunger = hunger;
+		}
 
 	}
 
-	@Override
-	public int water() {
-		return health;
-		// TODO Auto-generated method stub
-
+	public boolean getWaste() {
+		return isWaste;
 	}
 
-	@Override
-	public boolean clean() {
-		return waste;
-		// TODO Auto-generated method stub
-
+	public void setIsWaste(boolean isCageDirty) {
+		this.isWaste = isWaste;
 	}
 
+	
 }

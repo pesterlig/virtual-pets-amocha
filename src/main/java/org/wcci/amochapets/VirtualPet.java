@@ -71,7 +71,14 @@ public abstract class VirtualPet {
 	}
 
 	public void setHappiness(int happiness) {
-		this.happiness = happiness;
+		if (happiness > 100) {
+			this.happiness = 100;
+		} else if (happiness < 0) {
+			this.happiness = 0;
+		} else {
+			this.happiness = happiness;
+		}
+
 	}
 
 	public double getOverallHealth() {
@@ -79,26 +86,30 @@ public abstract class VirtualPet {
 	}
 
 	public void setOverallHealth(double overallHealth) {
+		if (overallHealth > 100) {
+			this.overallHealth = 100;
+		} else if (overallHealth < 0) {
+			this.overallHealth = 0;
+		} else {
+			this.overallHealth = overallHealth;
+		}
 		this.overallHealth = overallHealth;
 	}
 
 	// methods needed:
-	public abstract void tick();
+	public abstract boolean tick(); // individual for animal type 
+////	decreases health and happiness, 
+//	increase hunger, decreases oil level,
+//	returns waste or dirty cage
 
-	public abstract void computeHealth();
+	
+	
 
-	public abstract void computeHappiness();
+//	public abstract void computeOverallHealth();
 
-	public abstract void computeOverallHealth();
+	public void play() {
+	setHappiness(getHappiness() + (20 * (generator.nextInt(4) + 1)));
 
-	public int play() {
-		happiness += (20 * (randNum));
-		if (happiness > 100) {
-			happiness = 100;
-		} else if (happiness < 0) {
-			happiness = 0;
-		}
-		return happiness;
 	}
 
 	@Override

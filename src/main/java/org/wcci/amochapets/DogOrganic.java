@@ -2,8 +2,12 @@ package org.wcci.amochapets;
 
 public class DogOrganic extends Dogs implements Organic {
 
+	// instance variables
+
 	private int hunger;
 	private boolean isCageDirty;
+
+	// constructor
 
 	public DogOrganic(String name, String type, int health, int happiness, double overallHealth, int hunger,
 			boolean isCageDirty) {
@@ -13,52 +17,22 @@ public class DogOrganic extends Dogs implements Organic {
 
 	}
 
+	// overloaded constructor
+
 	public DogOrganic(String name, String type) {
 		super(name, type);
 		this.hunger = 50;
 		this.isCageDirty = false;
 	}
 
-	public int getHunger() {
-		return hunger;
-	}
-
-	public boolean getIsCageDirty() {
-		return isCageDirty;
-	}
-
-	public void setIsCageDirty(boolean isCageDirty) {
-		this.isCageDirty = isCageDirty;
-	}
+	// methods: feed, poop, water, pee, walk, cleanCage, tick, getters & setters
 
 	@Override
-	public void walk() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void tick() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void computeHealth() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void computeHappiness() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void computeOverallHealth() {
-		// TODO Auto-generated method stub
-
+	public void feed() {
+		setHunger(getHunger() - (10 * (generator.nextInt(4) + 1)));
+		if ((getHunger() < 50) && (generator.nextFloat() < 0.50f)) {
+			poop();
+		}
 	}
 
 	private void poop() {
@@ -67,11 +41,47 @@ public class DogOrganic extends Dogs implements Organic {
 	}
 
 	@Override
-	public void feed() {
-		setHunger(getHunger() - (10 * (generator.nextInt(4) + 1)));
-		if ((getHunger() < 50) && (generator.nextFloat() < 0.50f)) {
-			poop();
+	public void water() {
+		setHealth(getHealth() + (10 * (generator.nextInt(4) + 1)));
+		if ((getHealth() > 50) && (generator.nextFloat() < 0.50f)) {
+			pee();
 		}
+
+	}
+
+	private void pee() {
+		isCageDirty = true;
+		setHealth(getHealth() - 3);
+	}
+
+	@Override
+	public void walk() {
+		setHealth(getHealth() + 20);
+		setHunger(getHunger() + (10 * (generator.nextInt(4) + 1)));
+		if ((generator.nextFloat() < 0.90f)) {
+			clean();
+		}
+
+	}
+
+	public boolean clean() {
+		return isCageDirty = false;
+
+	}
+
+	@Override
+	public boolean tick() {
+		setHunger(getHunger() + (2 * (generator.nextInt(4) + 1)));
+		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
+		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
+		return isCageDirty;
+
+	}
+
+	// getters & setters
+
+	public int getHunger() {
+		return hunger;
 	}
 
 	private void setHunger(int hunger) {
@@ -85,28 +95,12 @@ public class DogOrganic extends Dogs implements Organic {
 
 	}
 
-	private void piss() {
-		isCageDirty = true;
-		setHealth(getHealth() - 3);
-	}
-
-	@Override
-	public void water() {
-		setHealth(getHealth() + (10 * (generator.nextInt(4) + 1)));
-		if ((getHealth() > 50) && (generator.nextFloat() < 0.50f)) {
-			piss();
-		}
-	}
-
-	@Override
-	public boolean clean() {
+	public boolean getIsCageDirty() {
 		return isCageDirty;
-
 	}
 
-	@Override
-	public int getHealth() {
-		return super.getHealth();
+	public void setIsCageDirty(boolean isCageDirty) {
+		this.isCageDirty = isCageDirty;
 	}
 
 }

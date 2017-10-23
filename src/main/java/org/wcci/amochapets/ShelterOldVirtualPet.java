@@ -6,54 +6,56 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class ShelterOldVirtualPet {
-	// ShelterOldVirtualPet class
-	//
-	// include appropriate instance variable(s) to store the pets who reside at the
-	// shelter
+	
+	
+	// include appropriate instance variable(s) (map)
+//	to store the pets who reside at the shelter       DONE
+
 	private Map<String, OldVirtualPet> pets = new HashMap<String, OldVirtualPet>();
 
-	// return a Collection of all of the pets in the shelter
+	// return a Collection of all of the pets in the shelter DONE
 	public Collection<OldVirtualPet> petsValues() {
 		return pets.values();
 	}
 
-	// return the number of pets in the shelter
+	// return the number of pets in the shelter DONE
 	public int getNumberOfPetsInShelter() {
 		return pets.size();
 	}
 
-	// return a specific OldVirtualPet given its name
+	// return a specific OldVirtualPet given its name DONE
 	public OldVirtualPet getPetByName(String name) {
 		return pets.get(name);
 	}
 
-	// allow intake of a homeless pet
+	// allow intake of a homeless pet DONE
 	public void inTake(OldVirtualPet pet) {
 		pets.put(pet.getName(), pet);
 	}
 
-	// allow adoption of a homeless pet
+	// allow adoption of a homeless pet DONE
 	public void adopt(String name) {
 		pets.remove(name);
 	}
 
-	// // feed all of the pets in the shelter
+	// // feed all of the pets in the shelter DONE
 	// public void feedAllPets() {
 	// for (OldVirtualPet pet : pets.values()) {
 	// pet.feedDryFood();
 	// }
 	// }
 	//
-	// // water all of the pets in the shelter
+	// // water all of the pets in the shelter DONE
 	// public void waterAllPets() {
 	// for (OldVirtualPet pet : pets.values()) {
 	// pet.waterPet();
 	// }
 	// }
 	//
-	// // plays (or performs some other interaction(s)) with an individual pet in
-	// the
-	// // shelter
+	// // plays (or performs some other interaction(s)) with 
+//	an individual pet in the shelter DONE
+	
+	
 	// public void playWithOnePetByName(String name) {
 	// pets.get(name).play();
 	// }

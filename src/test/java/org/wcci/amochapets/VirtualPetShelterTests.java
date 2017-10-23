@@ -94,13 +94,13 @@ public class VirtualPetShelterTests {
 
 	}
 
-	@Test
-	public void assertFeedWithoutRandNumMakesCageDirty() {
-		DogOrganic fido1 = new DogOrganic("Fido", "DogOrganic", 25, 25, 25.0, 25, false);
-		boolean FidosDirtyCage = fido1.isCageDirty();
-		fido1.feed();
-		assert (FidosDirtyCage = true);
-	}
+//	@Test
+//	public void assertFeedWithoutRandNumMakesCageDirty() {
+//		DogOrganic fido1 = new DogOrganic("Fido", "DogOrganic", 25, 25, 25.0, 25, false);
+//		boolean FidosDirtyCage = fido1.isCageDirty();
+//		fido1.feed();
+//		assert (FidosDirtyCage = true);
+//	}
 
 	//
 	// @Test
