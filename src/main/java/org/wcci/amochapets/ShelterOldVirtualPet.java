@@ -55,14 +55,13 @@ public class ShelterOldVirtualPet {
 	// // plays (or performs some other interaction(s)) with 
 //	an individual pet in the shelter DONE
 	
-	
 	// public void playWithOnePetByName(String name) {
 	// pets.get(name).play();
 	// }
 	//
 	// // include a tick method that calls the tick method for each of the pets in
 	// the
-	// // shelter, updating their needs
+	// // shelter, updating their needs DONE
 	// public void tickAllPets() {
 	// for (OldVirtualPet pet : pets.values()) {
 	// pet.tick();

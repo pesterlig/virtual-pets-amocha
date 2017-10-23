@@ -62,48 +62,48 @@ public class OldVirtualPet {
 				+ this.happiness + "\toverall health  " + this.overallHealth;
 	}
 
-	public void tick() {
-		// hunger += 7;
-		// if (hunger > 100) {
-		// hunger = 100;
-		// } else if (hunger < 0) {
-		// hunger = 0;
-		// }
-		health -= 3;
-		if (health > 100) {
-			health = 100;
-		} else if (health < 0) {
-			health = 0;
-		}
-		happiness -= 3;
-		if (happiness > 100) {
-			happiness = 100;
-		} else if (happiness < 0) {
-			happiness = 0;
-		}
-		// overallHealth = ((100 - hunger) + health + happiness) / 3;
-	}
+//	public void tick() {
+//		// hunger += 7;
+//		// if (hunger > 100) {
+//		// hunger = 100;
+//		// } else if (hunger < 0) {
+//		// hunger = 0;
+//		// }
+//		health -= 3;
+//		if (health > 100) {
+//			health = 100;
+//		} else if (health < 0) {
+//			health = 0;
+//		}
+//		happiness -= 3;
+//		if (happiness > 100) {
+//			happiness = 100;
+//		} else if (happiness < 0) {
+//			happiness = 0;
+//		}
+//		// overallHealth = ((100 - hunger) + health + happiness) / 3;
+//	}
  
 //	put the ascii kitten in the Client App ---Make an ascii puppy too?
-	public void displayAsciiKitten() {
-		char backSlash = '\\';
-		System.out.println("	    /|");
-		System.out.println("	  =(o  ` 7");
-		System.out.println("	     ` o =");
-		System.out.println("	   /   `" + backSlash);
-		System.out.println("	   U U\n");
+//	public void displayAsciiKitten() {
+//		char backSlash = '\\';
+//		System.out.println("	    /|");
+//		System.out.println("	  =(o  ` 7");
+//		System.out.println("	     ` o =");
+//		System.out.println("	   /   `" + backSlash);
+//		System.out.println("	   U U\n");
+//
+//	}
 
-	}
-
-	public void displayMenu(String name) {
-		System.out.println("What would you like to do? (Input number of choice)");
-		System.out.println(" 1 = Feed " + name + " expensive canned salmon");
-		System.out.println(" 2 = Feed " + name + " dry food");
-		System.out.println(" 3 = Hug " + name);
-		System.out.println(" 4 = Drag a ribbon around for " + name + " to play with");
-		System.out.println(" 5 = Ignore " + name);
-		System.out.println(" 6 = Talk to  " + name);
-	}
+//	public void displayMenu(String name) {
+//		System.out.println("What would you like to do? (Input number of choice)");
+//		System.out.println(" 1 = Feed " + name + " expensive canned salmon");
+//		System.out.println(" 2 = Feed " + name + " dry food");
+//		System.out.println(" 3 = Hug " + name);
+//		System.out.println(" 4 = Drag a ribbon around for " + name + " to play with");
+//		System.out.println(" 5 = Ignore " + name);
+//		System.out.println(" 6 = Talk to  " + name);
+//	}
 
 	// public int feedSalmon() {
 	// hunger -= (20 * (randNum));
@@ -154,15 +154,15 @@ public class OldVirtualPet {
 	// return health;
 	// }
 
-	public int play() {
-		happiness += (20 * (randNum));
-		if (happiness > 100) {
-			happiness = 100;
-		} else if (happiness < 0) {
-			happiness = 0;
-		}
-		return happiness;
-	}
+//	public int play() {
+//		happiness += (20 * (randNum));
+//		if (happiness > 100) {
+//			happiness = 100;
+//		} else if (happiness < 0) {
+//			happiness = 0;
+//		}
+//		return happiness;
+//	}
 
 //	is this method part of the tick? Maybe this belongs in ClientApp
 	public void computeAndDisplayOverallHealth() {
