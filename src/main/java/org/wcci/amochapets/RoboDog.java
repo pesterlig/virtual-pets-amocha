@@ -26,15 +26,21 @@ public class RoboDog extends Dogs implements Robotic {
 		setOilLevel(getOilLevel() + (10 * (generator.nextInt(4) + 1)));
 
 	}
+	
+//	walk - increases happiness, decreases oil level
 
 	@Override
 	public void walk() {
-		// TODO Auto-generated method stub
-
+		setHappiness(getHappiness() + 20);
+		setOilLevel( getOilLevel() -  (generator.nextInt(4) + 1) );
+		
 	}
+	
+	// tick -all needs increase as time passes
 
 	@Override
 	public boolean tick() {
+		setOilLevel(getOilLevel() - (2 * (generator.nextInt(4) + 1)));
 		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
 		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
 		return false;

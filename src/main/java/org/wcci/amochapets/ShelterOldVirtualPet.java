@@ -11,32 +11,32 @@ public class ShelterOldVirtualPet {
 	// include appropriate instance variable(s) (map)
 //	to store the pets who reside at the shelter       DONE
 
-	private Map<String, OldVirtualPet> pets = new HashMap<String, OldVirtualPet>();
-
-	// return a Collection of all of the pets in the shelter DONE
-	public Collection<OldVirtualPet> petsValues() {
-		return pets.values();
-	}
-
-	// return the number of pets in the shelter DONE
-	public int getNumberOfPetsInShelter() {
-		return pets.size();
-	}
-
-	// return a specific OldVirtualPet given its name DONE
-	public OldVirtualPet getPetByName(String name) {
-		return pets.get(name);
-	}
-
-	// allow intake of a homeless pet DONE
-	public void inTake(OldVirtualPet pet) {
-		pets.put(pet.getName(), pet);
-	}
-
-	// allow adoption of a homeless pet DONE
-	public void adopt(String name) {
-		pets.remove(name);
-	}
+//	private Map<String, OldVirtualPet> pets = new HashMap<String, OldVirtualPet>();
+//
+//	// return a Collection of all of the pets in the shelter DONE
+//	public Collection<OldVirtualPet> petsValues() {
+//		return pets.values();
+//	}
+//
+//	// return the number of pets in the shelter DONE
+//	public int getNumberOfPetsInShelter() {
+//		return pets.size();
+//	}
+//
+//	// return a specific OldVirtualPet given its name DONE
+//	public OldVirtualPet getPetByName(String name) {
+//		return pets.get(name);
+//	}
+//
+//	// allow intake of a homeless pet DONE
+//	public void inTake(OldVirtualPet pet) {
+//		pets.put(pet.getName(), pet);
+//	}
+	//
+	// // allow adoption of a homeless pet DONE
+	// public void adopt(String name) {
+	// pets.remove(name);
+	// }
 
 	// // feed all of the pets in the shelter DONE
 	// public void feedAllPets() {

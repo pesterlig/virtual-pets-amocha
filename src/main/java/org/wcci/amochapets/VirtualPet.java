@@ -85,7 +85,9 @@ public abstract class VirtualPet {
 		return overallHealth;
 	}
 
+//	 compute and set Overall Health
 	public void setOverallHealth(double overallHealth) {
+		this.overallHealth = ((getHealth() + getHappiness()) / 2);
 		if (overallHealth > 100) {
 			this.overallHealth = 100;
 		} else if (overallHealth < 0) {
@@ -97,18 +99,15 @@ public abstract class VirtualPet {
 	}
 
 	// methods needed:
-	public abstract boolean tick(); // individual for animal type 
-////	decreases health and happiness, 
-//	increase hunger, decreases oil level,
-//	returns waste or dirty cage
+	public abstract boolean tick(); // individual for animal type
+	//// decreases health and happiness,
+	// increase hunger, decreases oil level,
+	// returns waste or dirty cage
 
-	
-	
-
-//	public abstract void computeOverallHealth();
+	// public abstract void computeOverallHealth();
 
 	public void play() {
-	setHappiness(getHappiness() + (20 * (generator.nextInt(4) + 1)));
+		setHappiness(getHappiness() + (20 * (generator.nextInt(4) + 1)));
 
 	}
 

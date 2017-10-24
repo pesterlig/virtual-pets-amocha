@@ -58,6 +58,10 @@ public class CatOrganic extends VirtualPet implements Organic {
 		setHunger(getHunger() + (2 * (generator.nextInt(4) + 1)));
 		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
 		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
+		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
+		if (getHunger() > 85) {
+			setHappiness(getHappiness() - 5);
+		}
 		return isWaste;
 	}
 

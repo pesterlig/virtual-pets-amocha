@@ -25,10 +25,13 @@ public class RoboCat extends VirtualPet implements Robotic {
 
 	}
 
+	// tick -all needs increase as time passes
+
 	@Override
 	public boolean tick() {
 		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
 		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
+		setOilLevel(getOilLevel() - (2 * (generator.nextInt(4) + 1)));
 		return false;
 	}
 

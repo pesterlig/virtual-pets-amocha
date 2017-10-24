@@ -8,8 +8,10 @@ import java.util.Map;
 
 public class ShelterVirtualPet {
 
-	// instantiate a new Litterbox, isFull = false
+	// Still need to make hashmap, collection, and table for robocats and robodogs
 
+	// instantiate a new Litterbox, isFull = false
+	int wasteCount;
 	Litterbox litterbox = new Litterbox(false);
 
 	// make hashmap to store all pets & info. key: name, values: stats
@@ -28,12 +30,31 @@ public class ShelterVirtualPet {
 		return dogOrganics.values();
 	}
 
+	// Clean cages
+	public void cleanAllDirtyDogCages() {
+		for (DogOrganic dogOrganic : getDogOrganics()) {
+			dogOrganic.clean();
+			System.out.println();
+		}
+	}
+
 	// make Map of all Organic Cats in the shelter
 	private Map<String, CatOrganic> catOrganics = new HashMap<String, CatOrganic>();
 
 	// return a Collection of all Organic Cats in the shelter
 	public Collection<CatOrganic> getCatOrganics() {
 		return catOrganics.values();
+	}
+
+	// Count cat waste for all cats
+	public int checkLitterBox() {
+		int wasteCount = 0;
+		for (CatOrganic catOrganic : getCatOrganics()) {
+			if (catOrganic.getWaste()) {
+				wasteCount++;
+			}
+		}
+		return wasteCount;
 	}
 
 	// return the total number of all types of pets in the shelter
@@ -127,59 +148,38 @@ public class ShelterVirtualPet {
 		pets.get(name).play();
 
 	}
-	
-//	tick all pets in the shelter, updating their stats
+
+	// tick all pets in the shelter, updating their stats
 
 	public void tickAllPets() {
 		for (VirtualPet virtualPet : pets.values()) {
 			virtualPet.tick();
 		}
 	}
-	
-	// public void showAllPetsValuesInSentences() {
-		// for (OldVirtualPet pet : pets.values()) {
-		// System.out.println("Cat name: " + pet.getName() + "\t Description : " +
-		// pet.getDescription());
-		// System.out.println("Hunger = " + pet.getHunger() + "%\tHealth = " +
-		// pet.getHealth() + "%\tHappiness = "
-		// + pet.getHappiness() + "%");
-		// pet.computeAndDisplayContentment();
-		// System.out.println(" ");
-		// }
-		//
-		// }
-		//
-		// public void showAllPetsValuesTable() {
-		// System.out.println("Name\t\t|Hunger\t\t|Health\t\t|Happiness\t|Contentment");
-		// System.out.println("--------------------------------------------------------------------------");
-		// for (OldVirtualPet pet : pets.values()) {
-		// System.out.println(pet.getName() + "\t\t|" + pet.getHunger() + "%\t\t|" +
-		// pet.getHealth() + "%\t\t|"
-		// + pet.getHappiness() + "%\t\t|" + pet.getContentment() + "%");
-		// System.out.println(" ");
-		//
-		// }
 
-	
-	 public void showAllPetsValuesInSentences() {
-		 for ( VirtualPet virtualPet : pets.values() ) {
-		 System.out.println("Pet name: " + pet.getName() + "\t Type : " +
-		 virtualPet.getType());
-		 System.out.println("Overall health = " + virtualPet.getOverallHealth());
-		 pet.computeAndDisplayContentment();
-		 System.out.println(" ");
-		 }
-		
-		 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void showAllPetsValuesInSentences() {
+		for (VirtualPet virtualPet : pets.values()) {
+			System.out.println("Pet name: " + virtualPet.getName() + "\t Type : " + virtualPet.getType());
+			System.out.println("Overall Health = " + virtualPet.getOverallHealth());
+			if (virtualPet.getOverallHealth() >= 75) {
+				System.out.println(virtualPet.getName() + " is feeling Mocha-nificent now! ");
+			} else if (virtualPet.getOverallHealth() >= 50 && virtualPet.getOverallHealth() < 75) {
+				System.out.println(virtualPet.getName() + " could be better...");
+			} else if (virtualPet.getOverallHealth() < 50 && virtualPet.getOverallHealth() > 0) {
+				System.out.println(virtualPet.getName() + " has poor overall health!");
+			}
+			System.out.println(" ");
+		}
 
+	}
+
+	public void showAllPetsValuesTable() {
+		System.out.println("Name\t\t|Health\t\t|Happiness\t|Overall Health");
+		System.out.println("--------------------------------------------------------------------------");
+		for (VirtualPet pet : pets.values()) {
+			System.out.println(pet.getName() + "\t\t|" + pet.getHealth() + "%\t\t|" + pet.getHappiness() + "%\t\t|"
+					+ pet.getOverallHealth() + "%");
+			System.out.println(" ");
+		}
+	}
 }

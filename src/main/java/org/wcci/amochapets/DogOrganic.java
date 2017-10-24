@@ -69,11 +69,22 @@ public class DogOrganic extends Dogs implements Organic {
 
 	}
 
+	// tick -all needs increase as time passes,
+	// hunger affects happiness, dirty cage affects health,
+	// (both affect overall health - but not in this method)
+
 	@Override
 	public boolean tick() {
 		setHunger(getHunger() + (2 * (generator.nextInt(4) + 1)));
 		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
+		if (getIsCageDirty() == true) {
+			setHealth(getHealth() - 5);
+		}
 		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
+		if (getHunger() > 85) {
+			setHappiness(getHappiness() - 5);
+		}
+
 		return isCageDirty;
 
 	}

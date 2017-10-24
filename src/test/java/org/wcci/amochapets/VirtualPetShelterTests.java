@@ -84,50 +84,53 @@ public class VirtualPetShelterTests {
 		assertNotNull(underTest);
 
 	}
-	
-//	int bilbosOldHealth =
-			// testShelterVirtualPet.getPetByName("Bilbo").getHealth();
-			// testShelterVirtualPet.waterAllPets();
-			// assert (samsOldHealth <
-			// testShelterVirtualPet.getPetByName("Sam").getHealth());
-	
-	@Test
-	public void assertThatOilRobotPetIncreasesRobotPetsHealth() {
-		VirtualPet underTest = new RoboDog("Fidobot", "RoboDog", 50, 50, 50, 50);
-		
+}
 
-//	@Before
-	
-//	public void setUpTestContext() {
-//		DogOrganic fido1 = new DogOrganic("Fido", "DogOrganic", 25, 25, 25.0, 25, false);
+//// int bilbosOldHealth =
+// // testShelterVirtualPet.getPetByName("Bilbo").getHealth();
+// // testShelterVirtualPet.waterAllPets();
+// // assert (samsOldHealth <
+// // testShelterVirtualPet.getPetByName("Sam").getHealth());
 //
-//	}
+// @Test
+// public void assertThatOilRobotPetIncreasesRobotPetsHealth() {
+// VirtualPet underTest = new RoboDog("Fidobot", "RoboDog", 50, 50, 50, 50);
 //
-//	@After
-//	public void tearDownTestContext() {
+
+// @Before
+
+// public void setUpTestContext() {
+// DogOrganic fido1 = new DogOrganic("Fido", "DogOrganic", 25, 25, 25.0, 25,
+// false);
 //
-//	}
+// }
+//
+// @After
+// public void tearDownTestContext() {
+//
+// }
 
-//	@Test
-//	public void assertFeedWithoutRandNumMakesCageDirty() {
-//		DogOrganic fido1 = new DogOrganic("Fido", "DogOrganic", 25, 25, 25.0, 25, false);
-//		boolean FidosDirtyCage = fido1.isCageDirty();
-//		fido1.feed();
-//		assert (FidosDirtyCage = true);
-//	}
+// @Test
+// public void assertFeedWithoutRandNumMakesCageDirty() {
+// DogOrganic fido1 = new DogOrganic("Fido", "DogOrganic", 25, 25, 25.0, 25,
+// false);
+// boolean FidosDirtyCage = fido1.isCageDirty();
+// fido1.feed();
+// assert (FidosDirtyCage = true);
+// }
 
-	//
-	// @Test
-	// public void assertFeedAllFeedsAll() {
-	// int samsOldHunger = testShelterVirtualPet.getPetByName("Sam").getHunger();
+//
+// @Test
+// public void assertFeedAllFeedsAll() {
+// int samsOldHunger = testShelterVirtualPet.getPetByName("Sam").getHunger();
 
-	// testShelterVirtualPet.feedAllPets();
-	// assert (samsOldHunger >
-	// testShelterVirtualPet.getPetByName("Sam").getHunger());
+// testShelterVirtualPet.feedAllPets();
+// assert (samsOldHunger >
+// testShelterVirtualPet.getPetByName("Sam").getHunger());
 
-	// }
+// }
 
-//}
+// }
 //
 // @Before
 // public void setUpTestContext() {
