@@ -4,8 +4,8 @@ public class RoboCat extends VirtualPet implements Robotic {
 
 	private int oilLevel;
 
-	protected RoboCat(String name, String type, int health, int happiness, double overallHealth, int oilLevel) {
-		super(name, type, health, happiness, overallHealth);
+	protected RoboCat(String name, String type, int health, int happiness, int oilLevel) {
+		super(name, type, health, happiness);
 		this.oilLevel = oilLevel;
 	}
 
@@ -47,7 +47,6 @@ public class RoboCat extends VirtualPet implements Robotic {
 		} else {
 			this.oilLevel = oilLevel;
 		}
-
 	}
 
 }

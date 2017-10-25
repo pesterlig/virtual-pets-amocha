@@ -5,15 +5,12 @@ public class CatOrganic extends VirtualPet implements Organic {
 	// instance variables
 
 	private int hunger;
-	private boolean isWaste;
 
 	// constructor
 
-	public CatOrganic(String name, String type, int health, int happiness, double overallHealth, int hunger,
-			boolean waste) {
-		super(name, type, health, happiness, overallHealth);
+	public CatOrganic(String name, String type, int health, int happiness, int hunger) {
+		super(name, type, health, happiness);
 		this.hunger = hunger;
-		this.isWaste = isWaste;
 	}
 
 	// overloaded constructor - name & type only
@@ -21,22 +18,17 @@ public class CatOrganic extends VirtualPet implements Organic {
 	public CatOrganic(String name, String type) {
 		super(name, type);
 		this.hunger = 50;
-		this.isWaste = false;
 	}
 
 	// methods: feed, poop, water, pee, tick, getters & setters
 
 	@Override
 	public void feed() {
-		setHunger(getHunger() - (10 * (generator.nextInt(4) + 1)));
-		if ((getHunger() < 50) && (generator.nextFloat() < 0.50f)) {
-			poop();
-		}
+		setHunger(getHunger() - 20);
 	}
 
 	private void poop() {
-		isWaste = true;
-		setHunger(getHunger() + 3);
+		ClientVirtualPetShelterApp.getPetShelter().getLitterbox().addCrap();
 	}
 
 	@Override
@@ -45,12 +37,10 @@ public class CatOrganic extends VirtualPet implements Organic {
 		if ((getHealth() > 50) && (generator.nextFloat() < 0.50f)) {
 			pee();
 		}
-
 	}
 
 	private void pee() {
-		isWaste = true;
-		setHealth(getHealth() - 3);
+		ClientVirtualPetShelterApp.getPetShelter().getLitterbox().addPee();
 	}
 
 	@Override
@@ -62,7 +52,13 @@ public class CatOrganic extends VirtualPet implements Organic {
 		if (getHunger() > 85) {
 			setHappiness(getHappiness() - 5);
 		}
-		return isWaste;
+		boolean pooped = false;
+		if ((getHunger() < 50) && (generator.nextFloat() < 0.50f)) {
+			poop();
+			pooped = true;
+		}
+		return pooped;
+		
 	}
 
 	// getters & setters
@@ -80,14 +76,6 @@ public class CatOrganic extends VirtualPet implements Organic {
 			this.hunger = hunger;
 		}
 
-	}
-
-	public boolean getWaste() {
-		return isWaste;
-	}
-
-	public void setIsWaste(boolean isCageDirty) {
-		this.isWaste = isWaste;
 	}
 
 	

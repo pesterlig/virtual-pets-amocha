@@ -55,6 +55,17 @@ do not allow:
  amount of waste in an individual dog cage
 VirtualPetShelter class
 
+//	public static void showAllPetsValuesTable() {
+//		System.out.println("Name\t\t|Health\t\t|Happiness\t|Overall Health");
+//		System.out.println("--------------------------------------------------------------------------");
+//		for (VirtualPet pet : getPetShelter().getPets()) {
+//			// for ( *Type of objects in collection* *pointerName* in *collection* ){
+//			//		the pointerName is now available to you as local variable in the loop
+//			// }
+//			System.out.println(pet.getName() + "\t\t|" + pet.getHealth() + "%\t\t|" + pet.getHappiness() + "%\t\t|" + pet.getWellness() + "%\t\t|" + pet.getType() + "\n");
+//		}
+//	}
+
 In addition to the last project's requirements:
 
 introduce methods that allow for:

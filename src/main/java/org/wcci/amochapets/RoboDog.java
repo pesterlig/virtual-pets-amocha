@@ -1,13 +1,13 @@
 package org.wcci.amochapets;
 
-public class RoboDog extends Dogs implements Robotic {
+public class RoboDog extends Dog implements Robotic {
 
 	private int oilLevel;
 
 	// constructor
 
-	protected RoboDog(String name, String type, int health, int happiness, double overallHealth, int oilLevel) {
-		super(name, type, health, happiness, overallHealth);
+	protected RoboDog(String name, String type, int health, int happiness, int oilLevel) {
+		super(name, type, health, happiness);
 		this.oilLevel = oilLevel;
 	}
 
@@ -44,7 +44,6 @@ public class RoboDog extends Dogs implements Robotic {
 		setHealth(getHealth() - (2 * (generator.nextInt(4) + 1)));
 		setHappiness(getHappiness() - (2 * (generator.nextInt(4) + 1)));
 		return false;
-
 	}
 
 	private int getOilLevel() {

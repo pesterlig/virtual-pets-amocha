@@ -11,8 +11,7 @@ public class ShelterVirtualPet {
 	// Still need to make hashmap, collection, and table for robocats and robodogs
 
 	// instantiate a new Litterbox, isFull = false
-	int wasteCount;
-	Litterbox litterbox = new Litterbox(false);
+	private Litterbox litterbox = new Litterbox(5);
 
 	// make hashmap to store all pets & info. key: name, values: stats
 	private Map<String, VirtualPet> pets = new HashMap<String, VirtualPet>();
@@ -22,10 +21,10 @@ public class ShelterVirtualPet {
 		return pets.values();
 	}
 
-	// make Map of all Organic Dogs in the shelter
+	// make Map of all Organic Dog in the shelter
 	private Map<String, DogOrganic> dogOrganics = new HashMap<String, DogOrganic>();
 
-	// return a Collection of all Organic Dogs in the shelter
+	// return a Collection of all Organic Dog in the shelter
 	public Collection<DogOrganic> getDogOrganics() {
 		return dogOrganics.values();
 	}
@@ -33,7 +32,7 @@ public class ShelterVirtualPet {
 	// Clean cages
 	public void cleanAllDirtyDogCages() {
 		for (DogOrganic dogOrganic : getDogOrganics()) {
-			dogOrganic.clean();
+			dogOrganic.cleanCage();
 			System.out.println();
 		}
 	}
@@ -48,13 +47,7 @@ public class ShelterVirtualPet {
 
 	// Count cat waste for all cats
 	public int checkLitterBox() {
-		int wasteCount = 0;
-		for (CatOrganic catOrganic : getCatOrganics()) {
-			if (catOrganic.getWaste()) {
-				wasteCount++;
-			}
-		}
-		return wasteCount;
+		return getLitterbox().getWaste();
 	}
 
 	// return the total number of all types of pets in the shelter
@@ -64,7 +57,14 @@ public class ShelterVirtualPet {
 
 	// return a specific pet by name
 	public VirtualPet getPetByName(String name) {
-		return pets.get(name);
+
+		for (String key : pets.keySet()) {
+			if (key.equalsIgnoreCase(name)) {
+				return pets.get(key);
+			}
+		}
+
+		return null;
 	}
 
 	// allow intake of a new pet to the shelter
@@ -74,6 +74,7 @@ public class ShelterVirtualPet {
 
 	// allow adoption of a pet from the shelter
 	public void adopt(String name) {
+
 		pets.remove(name);
 	}
 
@@ -115,57 +116,58 @@ public class ShelterVirtualPet {
 	}
 
 	// feed all the organic pets using instanceof and the organic interface
-
+	// moved instanceOf to the getOrganicPets method
 	public void feedAllOrganicPets() {
-
-		// for (Organic organicPet : getOrganicPets()) {
-		// organicPet.feed();
-		// }
-
-		for (VirtualPet virtualPet : getPets())
-			if (virtualPet instanceof Organic) {
-				((Organic) virtualPet).feed();
-			}
+		for (Organic organicPet : getOrganicPets()) {
+			organicPet.feed();
+		}
 	}
 
 	// water all the organic pets
 
 	public void waterAllOrganicPets() {
 
-		// for (Organic organicPet : getOrganicPets()) {
-		// organicPet.water();
-		// }
+		 for (Organic organicPet : getOrganicPets()) {
+			 organicPet.water();
+		 }
 
-		for (VirtualPet virtualPet : getPets())
-			if (virtualPet instanceof Organic) {
-				((Organic) virtualPet).water();
-			}
 	}
 
 	// play with one individual pet in the shelter
 
 	public void playWithOnePetByName(String name) {
-		pets.get(name).play();
+
+		getPetByName(name).play();
 
 	}
 
 	// tick all pets in the shelter, updating their stats
 
-	public void tickAllPets() {
+	public int tickAllPets() {
+		int newCraps = 0;
 		for (VirtualPet virtualPet : pets.values()) {
-			virtualPet.tick();
+			if (virtualPet.tick()) {
+				newCraps ++;
+			}
 		}
+		System.out.println("There are " + newCraps + " new craps!");
+		return newCraps;
+	}
+
+	public Litterbox getLitterbox() {
+		return litterbox;
 	}
 
 	public void showAllPetsValuesInSentences() {
 		for (VirtualPet virtualPet : pets.values()) {
+
 			System.out.println("Pet name: " + virtualPet.getName() + "\t Type : " + virtualPet.getType());
-			System.out.println("Overall Health = " + virtualPet.getOverallHealth());
-			if (virtualPet.getOverallHealth() >= 75) {
+			System.out.println("Overall Health = " + virtualPet.getWellness());
+			if (virtualPet.getWellness() >= 75) {
 				System.out.println(virtualPet.getName() + " is feeling Mocha-nificent now! ");
-			} else if (virtualPet.getOverallHealth() >= 50 && virtualPet.getOverallHealth() < 75) {
+			} else if (virtualPet.getWellness() >= 50 && virtualPet.getWellness() < 75) {
 				System.out.println(virtualPet.getName() + " could be better...");
-			} else if (virtualPet.getOverallHealth() < 50 && virtualPet.getOverallHealth() > 0) {
+			} else if (virtualPet.getWellness() < 50 && virtualPet.getWellness() > 0) {
 				System.out.println(virtualPet.getName() + " has poor overall health!");
 			}
 			System.out.println(" ");
@@ -177,9 +179,17 @@ public class ShelterVirtualPet {
 		System.out.println("Name\t\t|Health\t\t|Happiness\t|Overall Health");
 		System.out.println("--------------------------------------------------------------------------");
 		for (VirtualPet pet : pets.values()) {
-			System.out.println(pet.getName() + "\t\t|" + pet.getHealth() + "%\t\t|" + pet.getHappiness() + "%\t\t|"
-					+ pet.getOverallHealth() + "%");
-			System.out.println(" ");
+			System.out.println(pet.getName() + "\t\t|" + pet.getHealth() + "%\t\t|" + pet.getHappiness() + "%\t\t|" + pet.getWellness() + "%\t\t|" + pet.getType() + "\n");
 		}
+	}
+
+	public void walkAllDogs() {
+		for ( VirtualPet virtualPet : pets.values() ) {
+			if ( virtualPet instanceof Dog ) {
+				((Dog)virtualPet).walk(); // typecasting!
+			}
+		}
+		// TODO Auto-generated method stub
+		
 	}
 }
